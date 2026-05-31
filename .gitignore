@@ -14,6 +14,10 @@ node_modules/
 # Hugo's local module cache (if you ever switch to Hugo Modules)
 /.hugo_cache/
 
+# Local dev server logs (if you ever redirect hugo server output)
+/srv.out
+/srv.err
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db

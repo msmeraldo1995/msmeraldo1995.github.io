@@ -5,7 +5,7 @@
   "description": "Personal portfolio + architecture site (Hugo + Docsy).",
   "scripts": {
     "prepare:docsy": "cd themes/docsy && npm install",
-    "serve": "hugo server",
+    "serve": "hugo server --baseURL http://localhost:1313/",
     "build": "hugo --gc --minify"
   },
   "devDependencies": {

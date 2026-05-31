@@ -76,10 +76,23 @@ npm install
 ## 5. Run it locally
 
 ```powershell
-hugo server
+npm run serve      # = hugo server --baseURL http://localhost:1313/
 ```
 
 Open <http://localhost:1313/>. Edits to content and config hot-reload.
+
+> **Heads-up about the URL path.** This repo is a GitHub Pages **project site**,
+> so the live site lives under a `/portfolio/` path
+> (`https://msmeraldo1995.github.io/portfolio/...`) and `baseURL` reflects that.
+>
+> If you run plain `hugo server` (instead of `npm run serve`), Hugo mirrors that
+> path locally, so the site is at **`http://localhost:1313/portfolio/`** and a
+> bare URL like `http://localhost:1313/projects/analytics-engine/` returns 404.
+> `npm run serve` overrides the base path to root for local testing so bare URLs
+> work. Either way, links *within* the site always resolve correctly.
+>
+> Want a clean root URL with no `/portfolio/` prefix? See
+> [Appendix: project site vs. user site](#appendix-project-site-vs-user-site).
 
 ## 6. Fill in your details
 
@@ -140,6 +153,7 @@ Settings → Pages.
 | `Error: failed to load modules: module "github.com/FortAwesome/Font-Awesome" not found` | The `themes/github.com` placeholder is missing. Re-run `npm run prepare:docsy`. Never delete that folder manually. |
 | `template for shortcode "blocks/cover" not found` | The Docsy submodule drifted onto `main`. Re-pin it: `git -C themes/docsy checkout v0.15.0`. |
 | `failed to load Git data: ...does not have any commits yet` | `enableGitInfo` needs history. Make your first commit (step 7); it then works locally and in CI. |
+| 404 on `http://localhost:1313/projects/...` (bare path) | Expected for a project site. Use `npm run serve` (serves at root) **or** browse to `http://localhost:1313/portfolio/...`. See the [appendix](#appendix-project-site-vs-user-site). |
 | Theme folder is empty after clone on another machine | `git submodule update --init` |
 | CI fails downloading Hugo | Bump `HUGO_VERSION` in `deploy.yml` to a current [release](https://github.com/gohugoio/hugo/releases). |
 | Styles look unstyled on the live site | `baseURL` mismatch — but CI sets it for you; make sure Pages **Source** is **GitHub Actions**, not "Deploy from a branch". |
@@ -149,3 +163,27 @@ Settings → Pages.
 It mirrors the Docsy-based publishing stack used in production for the
 [analytics engine](content/en/projects/analytics-engine.md) case study — so the
 site is itself a demonstration of the skill it documents.
+
+## Appendix: project site vs. user site
+
+GitHub Pages serves two kinds of site, and the choice decides whether your URLs
+carry a `/portfolio/` prefix:
+
+| | **Project site** (current) | **User site** |
+| --- | --- | --- |
+| Repo name | `portfolio` (anything) | `msmeraldo1995.github.io` (exact) |
+| Live URL | `msmeraldo1995.github.io/portfolio/` | `msmeraldo1995.github.io/` |
+| `baseURL` | `.../portfolio/` | `https://msmeraldo1995.github.io/` |
+| Bare paths like `/projects/...` | only under `/portfolio/` | work at the root |
+| Limit | many per account | **one** per account |
+
+You're set up as a **project site** — nothing is wrong, the `/portfolio/` prefix
+is correct and the CI sets it automatically.
+
+**To switch to a clean root URL** (no `/portfolio/`):
+
+1. Rename the repo to `msmeraldo1995.github.io` (Settings → General → Repository
+   name), and update the remote: `git remote set-url origin https://github.com/msmeraldo1995/msmeraldo1995.github.io.git`.
+2. Set `baseURL = "https://msmeraldo1995.github.io/"` in `config/_default/hugo.toml`.
+3. Push. (CI computes the right base URL either way, so this mainly affects local
+   builds and is the cleaner address to put on a résumé.)
