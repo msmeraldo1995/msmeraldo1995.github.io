@@ -1,0 +1,22 @@
+# Top navbar. Weights order left→right.
+
+[[main]]
+  name = "Projects"
+  weight = 10
+  url = "/projects/"
+
+[[main]]
+  name = "Architecture"
+  weight = 20
+  url = "/docs/"
+
+[[main]]
+  name = "About"
+  weight = 30
+  url = "/about/"
+
+[[main]]
+  name = "GitHub"
+  weight = 90
+  url = "https://github.com/msmeraldo1995"
+  pre = "<i class='fab fa-github'></i>"

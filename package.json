@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal portfolio + architecture site (Hugo + Docsy).",
+  "scripts": {
+    "prepare:docsy": "cd themes/docsy && npm install",
+    "serve": "hugo server",
+    "build": "hugo --gc --minify"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0"
+  }
+}

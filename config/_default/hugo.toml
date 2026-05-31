@@ -1,0 +1,51 @@
+# ─────────────────────────────────────────────────────────────────────────
+# EDIT THIS: set to your GitHub Pages URL.
+#   • Project site (repo named e.g. "portfolio"):  https://USERNAME.github.io/portfolio/
+#   • User site    (repo named USERNAME.github.io): https://USERNAME.github.io/
+# The GitHub Actions build overrides this automatically, so it only matters
+# for local `hugo server`. Keep the trailing slash.
+baseURL = "https://msmeraldo1995.github.io/portfolio/"
+
+title = "Mark — Data & Analytics Engineering"
+
+theme = ["docsy"]
+
+enableGitInfo = true
+enableRobotsTXT = true
+
+# Docsy is multilingual-ready; we keep a single English content tree.
+contentDir = "content/en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# 'locale' replaced the deprecated root 'languageCode' key in Hugo 0.158.
+locale = "en-us"
+
+# Useful for taxonomies; harmless to keep.
+disableKinds = ["taxonomy", "term"]
+
+[minify]
+  disableSVG = true
+
+# Docsy requires raw HTML passthrough in Markdown for its shortcodes.
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style = "tango"
+    lineNos = false
+    noClasses = false
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+# Image processing defaults (used by the cover block when you add a hero image).
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 75
+  anchor = "smart"
+
+[services]
+  [services.googleAnalytics]
+    # id = "G-XXXXXXXXXX"   # optional: paste your GA4 measurement ID

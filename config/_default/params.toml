@@ -1,0 +1,58 @@
+# Docsy parameters. See https://www.docsy.dev/docs/ for the full reference.
+
+copyright = "Mark"
+# privacy_policy = "https://policies.example.com/privacy"
+
+# Menu title if your logo is a text string (no SVG logo configured here).
+# A search box is intentionally disabled for a lean portfolio; see [ui] below.
+
+# Repo that backs this site — powers the "Edit this page" / "View source" links
+# on docs pages. EDIT THIS to your repo.
+github_repo = "https://github.com/msmeraldo1995/portfolio"
+github_branch = "main"
+
+# First commit-year for the footer.
+[taxonomy]
+  # taxonomies disabled in hugo.toml; left here intentionally blank.
+
+[ui]
+  # Set to true to disable breadcrumb navigation.
+  breadcrumb_disable = false
+  # Show the left nav as expandable tree on docs pages.
+  sidebar_menu_compact = false
+  # Lean portfolio: no search index.
+  sidebar_search_disable = true
+  # No text logo in the navbar (we use the site title).
+  navbar_logo = false
+  # Translucent navbar that turns solid on scroll.
+  navbar_translucent_over_cover_disable = false
+  # Show a "back to top" affordance on long docs pages.
+  footer_about_enable = true
+
+  # Per-page "was this page helpful?" widget — off for a portfolio.
+  [ui.feedback]
+    enable = false
+
+  # Reading-time + last-modified on docs pages.
+  [ui.readingtime]
+    enable = true
+
+[links]
+  # End-user-facing links (shown in footer + home). EDIT THESE.
+  [[links.user]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/YOUR-PROFILE/"
+    icon = "fab fa-linkedin"
+    desc = "Connect on LinkedIn"
+  [[links.user]]
+    name = "Email"
+    url = "mailto:you@example.com"
+    icon = "fa fa-envelope"
+    desc = "Get in touch"
+
+  # Developer-facing links.
+  [[links.developer]]
+    name = "GitHub"
+    url = "https://github.com/msmeraldo1995"
+    icon = "fab fa-github"
+    desc = "Code and projects on GitHub"

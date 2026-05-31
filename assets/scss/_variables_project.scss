@@ -1,0 +1,22 @@
+/*
+  Docsy theme overrides. This file is imported by Docsy BEFORE its own
+  variable defaults, so anything you set here wins. Demonstrates theme
+  customization without forking the theme.
+*/
+
+// Brand palette — a calm, technical blue/teal. Tweak to taste.
+$primary:   #1a6985;
+$secondary: #4a5568;
+$info:      #4a9fc7;
+$success:   #2f855a;
+$warning:   #c05621;
+$danger:    #c53030;
+$dark:      #15222b;
+
+// Typography via Google Fonts (Docsy fetches these when enabled).
+$td-enable-google-fonts: true;
+$google_font_name: "Inter";
+$google_font_subsets: "latin";
+
+// Slightly tighter, modern body sizing.
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

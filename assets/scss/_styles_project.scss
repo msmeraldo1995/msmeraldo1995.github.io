@@ -1,0 +1,29 @@
+/*
+  Custom styles layered on top of Docsy. Imported AFTER the theme styles.
+*/
+
+// Gives the home "cover" block an attractive gradient hero even when no
+// background photo is present. Drop a JPG at content/en/featured-background.jpg
+// to use a real photo instead — Docsy will prefer the image automatically.
+.td-cover-block {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 55%, #2c5364 100%);
+}
+
+// Card-like treatment for project / feature listings.
+.td-box .h4,
+.td-box h4 {
+  margin-bottom: .5rem;
+}
+
+// Make code blocks in deep-dive docs a touch more readable.
+.td-content pre {
+  border-radius: .4rem;
+  font-size: .85rem;
+}
+
+// Subtle accent on the primary lead block.
+.td-content blockquote {
+  border-left: .25rem solid $primary;
+  padding-left: 1rem;
+  color: $secondary;
+}

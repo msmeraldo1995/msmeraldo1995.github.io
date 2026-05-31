@@ -1,0 +1,78 @@
+name: Deploy Hugo + Docsy site to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+# Permissions required for the Pages deployment.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress production deploy.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Docsy v0.15.0 requires Hugo Extended >= 0.146.0. Pinned to match local dev.
+      # Update as needed: https://github.com/gohugoio/hugo/releases (must be "extended").
+      HUGO_VERSION: 0.162.1
+      HUGO_ENVIRONMENT: production
+    steps:
+      - name: Install Hugo (extended)
+        run: |
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Checkout (with Docsy submodule)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0   # needed for enableGitInfo (last-modified dates)
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Docsy's frontend dependencies
+        run: npm --prefix themes/docsy ci || npm --prefix themes/docsy install
+
+      - name: Install project PostCSS dependencies
+        run: npm ci || npm install
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build site
+        # configure-pages computes the correct base_url for project vs. user
+        # sites, so you never have to hardcode baseURL for production.
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
