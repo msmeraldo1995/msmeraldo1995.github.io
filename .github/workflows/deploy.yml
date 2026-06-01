@@ -44,10 +44,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          # Docsy v0.15.0 requires Node >= 24 (its PostCSS pipeline uses Node-24
+          # flags). Node 20/22 fail with: node: bad option: --permission
+          node-version: "24"
 
       - name: Install Docsy's frontend dependencies
-        run: npm --prefix themes/docsy ci || npm --prefix themes/docsy install
+        # Runs Docsy's postinstall, which creates the themes/github.com placeholder.
+        # (Plain install, not ci: the theme submodule has no lockfile to ci against.)
+        run: npm --prefix themes/docsy install
 
       - name: Install project PostCSS dependencies
         run: npm ci || npm install

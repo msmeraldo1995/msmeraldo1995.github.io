@@ -16,12 +16,13 @@ You need three tools. Install whichever you don't have:
 | --- | --- | --- |
 | **Git** | `winget install Git.Git` | `git --version` |
 | **Hugo (Extended!)** | `winget install Hugo.Hugo.Extended` | `hugo version` — output must contain `extended` |
-| **Node.js LTS** | `winget install OpenJS.NodeJS.LTS` | `node --version` |
+| **Node.js (≥ 24)** | `winget install OpenJS.NodeJS` | `node --version` — must be **24 or newer** |
 
 > The **extended** Hugo build is mandatory — Docsy compiles SCSS and the
 > standard Hugo build can't. If `hugo version` doesn't say `extended`, reinstall
-> the extended package. Docsy v0.15.0 also requires Hugo **>= 0.146.0**; any
-> current release is fine.
+> the extended package. Docsy v0.15.0 also requires Hugo **>= 0.146.0** and
+> **Node >= 24** (its PostCSS pipeline uses Node-24 features; older Node fails
+> with `node: bad option: --permission`). The CI workflow already pins Node 24.
 
 After installing, **close and reopen your terminal** so PATH updates.
 
@@ -152,6 +153,7 @@ Settings → Pages.
 | Build fails on `PostCSS`/`autoprefixer not found` | Run `npm install` in the project root (step 4). |
 | `Error: failed to load modules: module "github.com/FortAwesome/Font-Awesome" not found` | The `themes/github.com` placeholder is missing. Re-run `npm run prepare:docsy`. Never delete that folder manually. |
 | `template for shortcode "blocks/cover" not found` | The Docsy submodule drifted onto `main`. Re-pin it: `git -C themes/docsy checkout v0.15.0`. |
+| `POSTCSS: ... node: bad option: --permission` | Node is older than 24. Docsy v0.15.0 needs **Node ≥ 24**. Upgrade Node (CI is already pinned to 24 in `deploy.yml`). |
 | `failed to load Git data: ...does not have any commits yet` | `enableGitInfo` needs history. Make your first commit (step 7); it then works locally and in CI. |
 | 404 on `http://localhost:1313/projects/...` (bare path) | Expected for a project site. Use `npm run serve` (serves at root) **or** browse to `http://localhost:1313/portfolio/...`. See the [appendix](#appendix-project-site-vs-user-site). |
 | Theme folder is empty after clone on another machine | `git submodule update --init` |
