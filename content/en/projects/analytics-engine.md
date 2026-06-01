@@ -8,6 +8,10 @@ description: >
   executive reports.
 ---
 
+> 📊 **Prefer to see the output first?** Jump to the
+> [**worked sample report →**](/projects/sample-report/) — executive summary,
+> KPIs, charts, and AI insights over synthetic data.
+
 ## The problem
 
 A quality and operations organization runs on data spread across three systems
