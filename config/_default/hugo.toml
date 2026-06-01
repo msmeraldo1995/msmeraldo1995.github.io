@@ -1,10 +1,7 @@
-# ─────────────────────────────────────────────────────────────────────────
-# EDIT THIS: set to your GitHub Pages URL.
-#   • Project site (repo named e.g. "portfolio"):  https://USERNAME.github.io/portfolio/
-#   • User site    (repo named USERNAME.github.io): https://USERNAME.github.io/
-# The GitHub Actions build overrides this automatically, so it only matters
-# for local `hugo server`. Keep the trailing slash.
-baseURL = "https://msmeraldo1995.github.io/portfolio/"
+# User site (repo named msmeraldo1995.github.io) → served at the domain root.
+# The GitHub Actions build overrides this automatically, so it mainly affects
+# local `hugo server`. Keep the trailing slash.
+baseURL = "https://msmeraldo1995.github.io/"
 
 title = "Mark — Data & Analytics Engineering"
 

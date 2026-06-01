@@ -8,7 +8,7 @@ copyright = "Mark"
 
 # Repo that backs this site — powers the "Edit this page" / "View source" links
 # on docs pages. EDIT THIS to your repo.
-github_repo = "https://github.com/msmeraldo1995/portfolio"
+github_repo = "https://github.com/msmeraldo1995/msmeraldo1995.github.io"
 github_branch = "main"
 
 # First commit-year for the footer.
@@ -39,14 +39,15 @@ github_branch = "main"
 
 [links]
   # End-user-facing links (shown in footer + home). EDIT THESE.
-  [[links.user]]
-    name = "LinkedIn"
-    url = "https://www.linkedin.com/in/YOUR-PROFILE/"
-    icon = "fab fa-linkedin"
-    desc = "Connect on LinkedIn"
+  # TODO: add LinkedIn — uncomment and set your real profile URL:
+  # [[links.user]]
+  #   name = "LinkedIn"
+  #   url = "https://www.linkedin.com/in/your-profile/"
+  #   icon = "fab fa-linkedin"
+  #   desc = "Connect on LinkedIn"
   [[links.user]]
     name = "Email"
-    url = "mailto:you@example.com"
+    url = "mailto:msmeraldo1995@gmail.com"   # change to your preferred contact address
     icon = "fa fa-envelope"
     desc = "Get in touch"
 

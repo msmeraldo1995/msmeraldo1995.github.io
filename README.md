@@ -82,18 +82,10 @@ npm run serve      # = hugo server --baseURL http://localhost:1313/
 
 Open <http://localhost:1313/>. Edits to content and config hot-reload.
 
-> **Heads-up about the URL path.** This repo is a GitHub Pages **project site**,
-> so the live site lives under a `/portfolio/` path
-> (`https://msmeraldo1995.github.io/portfolio/...`) and `baseURL` reflects that.
->
-> If you run plain `hugo server` (instead of `npm run serve`), Hugo mirrors that
-> path locally, so the site is at **`http://localhost:1313/portfolio/`** and a
-> bare URL like `http://localhost:1313/projects/analytics-engine/` returns 404.
-> `npm run serve` overrides the base path to root for local testing so bare URLs
-> work. Either way, links *within* the site always resolve correctly.
->
-> Want a clean root URL with no `/portfolio/` prefix? See
-> [Appendix: project site vs. user site](#appendix-project-site-vs-user-site).
+> This is a GitHub Pages **user site** (repo `msmeraldo1995.github.io`), served
+> at the domain root — `https://msmeraldo1995.github.io/`, no `/portfolio/`
+> prefix. `baseURL` reflects that, and `canonifyURLs = true` (in `hugo.toml`)
+> ensures links written in Markdown like `/projects/` resolve correctly.
 
 ## 6. Fill in your details
 
@@ -166,26 +158,18 @@ It mirrors the Docsy-based publishing stack used in production for the
 [analytics engine](content/en/projects/analytics-engine.md) case study — so the
 site is itself a demonstration of the skill it documents.
 
-## Appendix: project site vs. user site
+## Appendix: user site (root URL)
 
-GitHub Pages serves two kinds of site, and the choice decides whether your URLs
-carry a `/portfolio/` prefix:
+This site is configured as a GitHub Pages **user site**, served at the domain
+root:
 
-| | **Project site** (current) | **User site** |
+| | **User site** (this repo) | Project site (alternative) |
 | --- | --- | --- |
-| Repo name | `portfolio` (anything) | `msmeraldo1995.github.io` (exact) |
-| Live URL | `msmeraldo1995.github.io/portfolio/` | `msmeraldo1995.github.io/` |
-| `baseURL` | `.../portfolio/` | `https://msmeraldo1995.github.io/` |
-| Bare paths like `/projects/...` | only under `/portfolio/` | work at the root |
-| Limit | many per account | **one** per account |
+| Repo name | `msmeraldo1995.github.io` (exact) | any name, e.g. `portfolio` |
+| Live URL | `https://msmeraldo1995.github.io/` | `…github.io/<repo>/` |
+| `baseURL` | `https://msmeraldo1995.github.io/` | `…/<repo>/` |
+| Limit | **one** per account | many per account |
 
-You're set up as a **project site** — nothing is wrong, the `/portfolio/` prefix
-is correct and the CI sets it automatically.
-
-**To switch to a clean root URL** (no `/portfolio/`):
-
-1. Rename the repo to `msmeraldo1995.github.io` (Settings → General → Repository
-   name), and update the remote: `git remote set-url origin https://github.com/msmeraldo1995/msmeraldo1995.github.io.git`.
-2. Set `baseURL = "https://msmeraldo1995.github.io/"` in `config/_default/hugo.toml`.
-3. Push. (CI computes the right base URL either way, so this mainly affects local
-   builds and is the cleaner address to put on a résumé.)
+The repo **must** be named exactly `msmeraldo1995.github.io` for the root URL to
+work. The CI workflow computes the correct base URL automatically from the repo
+name, and `canonifyURLs = true` keeps in-content links correct either way.
