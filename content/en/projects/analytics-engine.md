@@ -1,6 +1,7 @@
 ---
 title: "AI-Enabled Analytics Engine for GxP Operational Data"
 linkTitle: "Analytics Engine"
+weight: 1
 date: 2026-05-28
 description: >
   A platform that connects to operational source systems, automates data prep
