@@ -13,6 +13,12 @@ theme = ["docsy"]
 enableGitInfo = true
 enableRobotsTXT = true
 
+# Rewrite root-relative links written inside Markdown content (e.g. "/projects/")
+# so they include the deployment's base path. Without this, hardcoded "/..."
+# links break on a project site served under "/portfolio/". Works for both a
+# project site and a user (root) site, since the active baseURL drives it.
+canonifyURLs = true
+
 # Docsy is multilingual-ready; we keep a single English content tree.
 contentDir = "content/en"
 defaultContentLanguage = "en"
